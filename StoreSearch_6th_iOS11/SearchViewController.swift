@@ -33,6 +33,8 @@ class SearchViewController: UIViewController {
         
         tableView.rowHeight = 80
         
+        searchBar.becomeFirstResponder()
+        
 //        let searchResult = SearchResult()
 //        searchResult.name = ""
 //        searchResult.artistName = ""
