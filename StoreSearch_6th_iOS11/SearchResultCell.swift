@@ -30,3 +30,4 @@ class SearchResultCell: UITableViewCell {
     }
 
 }
+
