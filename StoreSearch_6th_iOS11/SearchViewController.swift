@@ -71,16 +71,6 @@ class SearchViewController: UIViewController {
         let url = URL(string: urlString)
         return url!
     }
-
-    func performStoreRequest(with url: URL) -> Data? {
-        do {
-            return try Data(contentsOf: url)
-        } catch {
-            print("Download error: \(error.localizedDescription)")
-            showNetworkError()
-            return nil
-        }
-    }
     
     func parse(data: Data) -> [SearchResult] {
         do {
@@ -113,38 +103,45 @@ extension SearchViewController: UISearchBarDelegate {
             
             hasSearched = true
             searchResults = []
-
-            let queue = DispatchQueue.global()
             
-            let url = self.iTunesURL(searchText: searchBar.text!)
-
-            queue.async {
-                if let data = self.performStoreRequest(with: url) {
-                    self.searchResults = self.parse(data: data)
-                    self.searchResults.sort {
-                        $0.name.localizedStandardCompare($1.name) == .orderedAscending
-                        
+            let url = iTunesURL(searchText: searchBar.text!)
+            
+            let session = URLSession.shared
+            
+            let dataTask = session.dataTask(with: url) { (data, response, error) in
+                print("On Main Thread? " + (Thread.current.isMainThread ? "Yes" : "No"))
+                if let error = error {
+                    print("Failure! \(error)")
+                } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                    print("Success! \(data!)")
+                    if let data = data {
+                        self.searchResults = self.parse(data: data)
+                        self.searchResults.sort {
+                            $0.name.localizedStandardCompare($1.name) == .orderedAscending
+                        }
+                        DispatchQueue.main.async {
+                            print("On Main Thread? " + (Thread.current.isMainThread ? "Yes" : "No"))
+                            self.isLoading = false
+                            self.tableView.reloadData()
+                        }
+                        return
                     }
-                    print ("DONE!")
-                    DispatchQueue.main.async {
-                        self.isLoading = false
-                        self.tableView.reloadData()
-                    }
-                    return
+                } else {
+                    print("Failure! \(response!)")
+                }
+                
+                DispatchQueue.main.async {
+                    self.hasSearched = false
+                    self.isLoading = false
+                    self.tableView.reloadData()
+                    self.showNetworkError()
                 }
             }
             
-//            let url = iTunesURL(searchText: searchBar.text!)
-//            print("URL: \(url)")
-//
-//            if let jsonString = performStoreRequest(with: url) {
-//                searchResults = parse(data: jsonString)
-//                searchResults.sort { $0.name.localizedStandardCompare($1.name) == .orderedAscending
-//                }
-//            }
-//            isLoading = false
-//            tableView.reloadData()
+            dataTask.resume()
+            
         }
+
     }
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {
