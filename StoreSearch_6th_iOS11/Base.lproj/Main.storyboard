@@ -34,24 +34,49 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="aMF-jS-WMZ"/>
                                 </connections>
                             </searchBar>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4hs-yp-bkY">
+                                <rect key="frame" x="0.0" y="76" width="320" height="44"/>
+                                <items>
+                                    <navigationItem id="wSt-RX-cMY">
+                                        <nil key="title"/>
+                                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="878-TA-mDv">
+                                            <rect key="frame" x="10" y="7" width="300" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <segments>
+                                                <segment title="All"/>
+                                                <segment title="Music"/>
+                                                <segment title="Software"/>
+                                                <segment title="E-Books"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="segmentChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="UwU-rB-xRo"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="mrN-MM-8lU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4G2-ur-cib"/>
+                            <constraint firstItem="4hs-yp-bkY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="76" id="53a-4M-etd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="mrN-MM-8lU" secondAttribute="trailing" id="53i-6h-Me4"/>
                             <constraint firstItem="mrN-MM-8lU" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="TGB-KE-46C"/>
+                            <constraint firstItem="4hs-yp-bkY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="VMc-SW-Gr1"/>
+                            <constraint firstItem="4hs-yp-bkY" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="cDw-qk-AEu"/>
                             <constraint firstItem="mrN-MM-8lU" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ccX-y2-HPz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="searchBar" destination="LtR-gm-pQW" id="bzM-v3-gSv"/>
+                        <outlet property="segmentedControl" destination="878-TA-mDv" id="Xel-cU-Zk9"/>
                         <outlet property="tableView" destination="mrN-MM-8lU" id="gOU-C7-Ql7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2966" y="-442"/>
+            <point key="canvasLocation" x="-4457" y="-935"/>
         </scene>
     </scenes>
 </document>

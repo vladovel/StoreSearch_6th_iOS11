@@ -12,7 +12,7 @@
 		3F4B25052074B72C005A5A83 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B25042074B72C005A5A83 /* SearchViewController.swift */; };
 		3F4B25082074B72C005A5A83 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F4B25062074B72C005A5A83 /* Main.storyboard */; };
 		3F4B250A2074B72D005A5A83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F4B25092074B72D005A5A83 /* Assets.xcassets */; };
-		3F4B250D2074B72D005A5A83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F4B250B2074B72D005A5A83 /* LaunchScreen.storyboard */; };
+		3F4EF9EB20908F0D009E1EDD /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4EF9EA20908F0D009E1EDD /* UIImageView+DownloadImage.swift */; };
 		3FAFCFB92074EE680004263B /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAFCFB82074EE680004263B /* SearchResult.swift */; };
 		3FAFCFBB207CA3CE0004263B /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FAFCFBA207CA3CE0004263B /* SearchResultCell.xib */; };
 		3FAFCFBD207CB9EE0004263B /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAFCFBC207CB9EE0004263B /* SearchResultCell.swift */; };
@@ -26,8 +26,8 @@
 		3F4B25042074B72C005A5A83 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		3F4B25072074B72C005A5A83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F4B25092074B72D005A5A83 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3F4B250C2074B72D005A5A83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F4B250E2074B72D005A5A83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F4EF9EA20908F0D009E1EDD /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
 		3FAFCFB82074EE680004263B /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		3FAFCFBA207CA3CE0004263B /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		3FAFCFBC207CB9EE0004263B /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
@@ -67,9 +67,9 @@
 				3F4B25022074B72C005A5A83 /* AppDelegate.swift */,
 				3F4B25092074B72D005A5A83 /* Assets.xcassets */,
 				3F4B250E2074B72D005A5A83 /* Info.plist */,
-				3F4B250B2074B72D005A5A83 /* LaunchScreen.storyboard */,
 				3F082573208F0CA9002E4AD4 /* LoadingCell.xib */,
 				3F4B25062074B72C005A5A83 /* Main.storyboard */,
+				3F4EF9EA20908F0D009E1EDD /* UIImageView+DownloadImage.swift */,
 				3FAFCFBE207CC5810004263B /* NothingFoundCell.xib */,
 				3FAFCFB82074EE680004263B /* SearchResult.swift */,
 				3FAFCFBC207CB9EE0004263B /* SearchResultCell.swift */,
@@ -137,7 +137,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F4B250D2074B72D005A5A83 /* LaunchScreen.storyboard in Resources */,
 				3F4B250A2074B72D005A5A83 /* Assets.xcassets in Resources */,
 				3F082574208F0CA9002E4AD4 /* LoadingCell.xib in Resources */,
 				3FAFCFBB207CA3CE0004263B /* SearchResultCell.xib in Resources */,
@@ -157,6 +156,7 @@
 				3FAFCFB92074EE680004263B /* SearchResult.swift in Sources */,
 				3FAFCFBD207CB9EE0004263B /* SearchResultCell.swift in Sources */,
 				3F4B25032074B72C005A5A83 /* AppDelegate.swift in Sources */,
+				3F4EF9EB20908F0D009E1EDD /* UIImageView+DownloadImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,14 +169,6 @@
 				3F4B25072074B72C005A5A83 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		3F4B250B2074B72D005A5A83 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3F4B250C2074B72D005A5A83 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
