@@ -18,8 +18,19 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var genreLabel: UILabel!
     @IBOutlet weak var priceButton: UIButton!
     
+    var searchResult: SearchResult!
+    var downloadTask: URLSessionDownloadTask?
+    
+    deinit {
+        print("Deinit \(self)")
+        downloadTask?.cancel()
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        populateValuesInPopUpView()
         
         view.tintColor = UIColor(red: 20/255, green: 160/255, blue: 160/255, alpha: 1)
         popupView.layer.cornerRadius = 10
@@ -43,6 +54,49 @@ class DetailViewController: UIViewController {
     
     @IBAction func close() {
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func openInStore() {
+        if let url = URL(string: searchResult.storeURL) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
+    func populateValuesInPopUpView() {
+        if let searchResult = searchResult {
+            nameLabel.text = searchResult.name
+            if searchResult.artistName.isEmpty {
+                artistNameLabel.text = "Unknown"
+            } else {
+                artistNameLabel.text = searchResult.artistName
+            }
+            
+            kindLabel.text = searchResult.type
+            genreLabel.text = searchResult.genre
+            
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .currency
+            formatter.currencyCode = searchResult.currency
+            
+            let priceText: String
+            if searchResult.price == 0 {
+                priceText = "Free"
+            } else if let text = formatter.string(from: searchResult.price as NSNumber) {
+                priceText = text
+            } else {
+                priceText = ""
+            }
+            
+            priceButton.setTitle(priceText, for: .normal)
+            
+            if let largeURL = URL(string: searchResult.imageLarge) {
+                downloadTask = artworkImageView.loadImage(url: largeURL)
+            }
+            
+            //artworkImageView.image = artworkImageView.loadImage(url: URL(string: searchResult.trackViewUrl))
+        }
+        
+        
     }
     
 

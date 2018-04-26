@@ -23,7 +23,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-//    @IBOutlet weak var searchBar2: UISearchBar!
+    //    @IBOutlet weak var searchBar2: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,10 +44,10 @@ class SearchViewController: UIViewController {
         searchBar.becomeFirstResponder()
         
         
-//        let searchResult = SearchResult()
-//        searchResult.name = ""
-//        searchResult.artistName = ""
-//        searchResults.append(searchResult)
+        //        let searchResult = SearchResult()
+        //        searchResult.name = ""
+        //        searchResult.artistName = ""
+        //        searchResults.append(searchResult)
         
     }
     
@@ -105,6 +105,15 @@ class SearchViewController: UIViewController {
         let action = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowDetail" {
+            let indexPath = (sender) as! IndexPath
+            let searchResult = searchResults[indexPath.row]
+            let destinationVC = segue.destination as! DetailViewController
+            destinationVC.searchResult = searchResult
+        }
     }
     
 }
@@ -168,7 +177,7 @@ extension SearchViewController: UISearchBarDelegate {
             dataTask?.resume()
             
         }
-
+        
     }
     
     func position(for bar: UIBarPositioning) -> UIBarPosition {
