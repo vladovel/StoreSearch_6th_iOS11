@@ -34,6 +34,8 @@ class DetailViewController: UIViewController {
         
         view.tintColor = UIColor(red: 20/255, green: 160/255, blue: 160/255, alpha: 1)
         popupView.layer.cornerRadius = 10
+        
+        view.backgroundColor = UIColor.clear
 
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(close))
         gestureRecognizer.cancelsTouchesInView = false
@@ -116,6 +118,12 @@ extension DetailViewController: UIViewControllerTransitioningDelegate {
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         return DimmingPresentationController(presentedViewController: presented, presenting: presenting)
     }
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return BounceAnimationController()
+    }
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return SlideOutAnimationController()
+    }
 }
 
 extension DetailViewController: UIGestureRecognizerDelegate {
@@ -123,3 +131,5 @@ extension DetailViewController: UIGestureRecognizerDelegate {
         return (touch.view === self.view)
     }
 }
+
+
