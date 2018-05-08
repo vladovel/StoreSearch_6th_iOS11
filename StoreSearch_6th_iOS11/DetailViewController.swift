@@ -55,6 +55,7 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func close() {
+        dismissStyle = .slide
         dismiss(animated: true, completion: nil)
     }
     
@@ -63,6 +64,13 @@ class DetailViewController: UIViewController {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
+    
+    enum AnimationStyle {
+        case slide
+        case fade
+    }
+    
+    var dismissStyle = AnimationStyle.fade
     
     func populateValuesInPopUpView() {
         if let searchResult = searchResult {
@@ -122,7 +130,12 @@ extension DetailViewController: UIViewControllerTransitioningDelegate {
         return BounceAnimationController()
     }
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return SlideOutAnimationController()
+        switch  dismissStyle {
+        case .slide:
+            return SlideOutAnimationController()
+        case .fade:
+            return FadeOutAnimationController()
+        }
     }
 }
 
